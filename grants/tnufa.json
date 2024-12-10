@@ -1,0 +1,390 @@
+{
+  "information": {
+    "track_name": "Tnufa Track 9",
+    "description": "The Tnufa track is designed for early-stage entrepreneurs interested in developing and advancing an innovative technological idea through a grant for initial R&D, towards proof of concept (POC) stage and/or building an initial prototype.",
+    "purpose": "To assist in proving technological feasibility and business viability of the venture, with the goal of enabling private capital raising and/or finding a business partner for further development of the idea.",
+    "target_audience": "Private entrepreneurs or groups of entrepreneurs who are residents of Israel, or companies (according to guidelines) operating in all industrial sectors.",
+    "grant_amount": {
+      "percentage": 80,
+      "maximum_amount": 200000,
+      "currency": "NIS",
+      "duration_months": 12,
+      "maximum_budget": 250000
+    },
+    "eligible_expenses": [
+      "Building a prototype",
+      "Intellectual property protection",
+      "Initial business development",
+      "Materials and consumable components",
+      "Subcontractors",
+      "Technical consultants",
+      "Marketing consultants",
+      "Patent attorneys",
+      "Exhibition presentations"
+    ],
+    "benefits": [
+      "Quality stamp investment: Tnufa investment allows entrepreneurs to examine project viability and reflects professional and objective confidence in the project's potential",
+      "Convenient terms: Entrepreneurs are not required to leave their current job or establish a company as a condition for receiving investment",
+      "No equity requirement: Entrepreneurs do not need to give up project rights or allocate shares to the state in exchange for the grant",
+      "Continuity at Innovation Authority: After Tnufa period, projects can apply for additional Innovation Authority grant tracks"
+    ],
+    "eligibility_conditions": [
+      "Must be an Israeli resident entrepreneur/group of entrepreneurs",
+      "Project must target global markets",
+      "Must maintain reporting, registration, royalty, and IP preservation obligations according to Innovation Law",
+      "Must be willing to repay grant through royalties if project reaches commercialization stage",
+      "Must conduct R&D activities in Israel"
+    ],
+    "company_requirements": {
+      "max_annual_income": 200000,
+      "max_funding_raised": 500000,
+      "currency": "NIS"
+    },
+    "obligations": [
+      "Reporting obligations according to Innovation Law",
+      "Registration obligations",
+      "Royalty payment obligations",
+      "Knowledge and intellectual property preservation obligations",
+      "Manufacturing activities must primarily be in Israel"
+    ],
+    "royalty_terms": {
+      "percentage": 3,
+      "trigger": "commercialization and sales"
+    },
+    "evaluation_criteria": [
+      "Level of technological innovation and uniqueness of the proposed program",
+      "Level of challenges in implementing the proposed program",
+      "Applicant capabilities, including business and technological capabilities",
+      "Feasibility and ability to complete and implement the proposed program",
+      "Business-economic growth potential of the applicant due to program success",
+      "Potential technological and employment contribution to the Israeli economy",
+      "Grant contribution to significant advancement towards capital raising and continued development"
+    ]
+  },
+  "questions": [
+    {
+      "identifier": "1.1",
+      "type": "text",
+      "category": "Applicant Information",
+      "title": "Applicant (Lead Entrepreneur) Details",
+      "question": "Provide details about the applicant",
+      "answer_structure_instructions": "- Fill in all fields in a structured manner\n- Include full name, ID/business registration number\n- Provide project/company name in Hebrew and English\n- Include founding year, address, contact details",
+      "answer_content_instructions": "- Use clear, professional language\n- Ensure all contact information is current and accurate\n- Provide comprehensive but concise details"
+    },
+    {
+      "identifier": "1.2",
+      "type": "text",
+      "category": "Applicant Information",
+      "title": "Project Theme",
+      "question": "Describe the project theme in up to 8 words in Hebrew",
+      "answer_structure_instructions": "- Limit response to 8 words\n- Use Hebrew language\n- Capture the essence of the project",
+      "answer_content_instructions": "- Be precise and descriptive\n- Highlight the core value proposition\n- Use clear, impactful language"
+    },
+    {
+      "identifier": "1.3",
+      "type": "text",
+      "category": "Project Financing",
+      "title": "Requested Budget and Timeline",
+      "question": "Specify the requested budget and project start date",
+      "answer_structure_instructions": "- Maximum budget: 250,000 NIS\n- Include requested budget amount\n- Specify proposed project start date\n- Note: Start date cannot be earlier than the application submission month",
+      "answer_content_instructions": "- Provide exact budget figures\n- Justify the budget allocation\n- Demonstrate financial planning"
+    },
+    {
+      "identifier": "1.4",
+      "type": "table",
+      "category": "Partnership Details",
+      "title": "Project Partners and Stakeholders",
+      "question": "Provide details of leading partners in the project",
+      "answer_structure_instructions": "- If applicant is a company:\n  - List partners with more than 4 shareholders in appendices\n  - Replace \"Lead Entrepreneur\" with company role\n- Provide details including:\n  - Name\n  - ID/Registration number\n  - Phone\n  - Ownership percentage",
+      "answer_content_instructions": "- Clearly define each partner's role\n- Ensure transparency in ownership structure\n- Highlight key stakeholders' backgrounds"
+    },
+    {
+      "identifier": "2",
+      "type": "text",
+      "category": "Project Executive Summary",
+      "title": "Executive Summary (to be copied verbatim to Research Committee's opinion)",
+      "question": "Present a concise summary of selected key project aspects",
+      "answer_structure_instructions": "- Include three key aspects important for committee members:\n  [1] Project need, product to be developed, technology, technological and functional innovation, core development content, and objectives to be achieved with the grant\n  [2] Relevant market, market validation performed, competitors, business opportunity, business model for raising funds\n  [3] Other critical project highlights",
+      "answer_content_instructions": "- Limit to 15 lines maximum\n- Use precise and clear language\n- Capture the essence of the project\n- Ensure the summary can be directly copied to the research committee's review document"
+    },
+    {
+      "identifier": "3",
+      "type": "text",
+      "category": "Project Rationale",
+      "title": "Project Need and Problem Statement",
+      "question": "Describe in detail the problem or need that the project aims to address",
+      "answer_structure_instructions": "- Provide a comprehensive description of:\n  - The specific problem or need\n  - Context of the problem\n  - Current limitations or challenges\n  - Target domain or industry",
+      "answer_content_instructions": "- Use clear, analytical language\n- Provide concrete examples\n- Demonstrate deep understanding of the problem\n- Explain why existing solutions are insufficient\n- Show the significance and urgency of addressing this need"
+    },
+    {
+      "identifier": "4",
+      "type": "text",
+      "category": "Product Description",
+      "title": "Product Details and Characteristics",
+      "question": "Provide a detailed description of each project product",
+      "answer_structure_instructions": "- For each product, describe the following three aspects:\n  [1] Product Description and Need Solution\n    - Explain the product's purpose\n    - Detail how it addresses the identified need\n    - Describe its unique value proposition\n\n  [2] Product Components and Operational Principles\n    - Break down product components\n    - Explain technical components\n    - Describe operational principles and mechanisms\n    - Illustrate how different components interact\n\n  [3] Use Cases\n    - Describe potential usage scenarios\n    - Explain current and future integration possibilities\n    - Demonstrate product versatility\n    - Show potential for future product development and integration",
+      "answer_content_instructions": "- Use technical yet accessible language\n- Provide clear, logical explanations\n- Include diagrams or technical illustrations if possible\n- Demonstrate thorough understanding of product functionality\n- Highlight innovative aspects of the product design"
+    },
+    {
+      "identifier": "5.1",
+      "type": "text",
+      "category": "Project Team",
+      "title": "Project Team and Capabilities",
+      "question": "Describe the following aspects in detail:",
+      "answer_structure_instructions": "1. Provide background and relevant experience of each development team member\n2. Describe the team's capabilities to implement the project\n3. Detail any significant subcontractors (if relevant)\n4. Describe advisors and project mentors (if relevant)\n5. List investors, board members, or strategic partners",
+      "answer_content_instructions": "- Use clear and professional language\n- Provide specific details about team members' expertise\n- Highlight unique qualifications and experiences\n- Be concise but comprehensive\n- Focus on how the team's background supports project success"
+    },
+    {
+      "identifier": "5.2",
+      "type": "text",
+      "category": "Project Implementation",
+      "title": "Capability Gaps and Mitigation",
+      "question": "Describe the following aspects:",
+      "answer_structure_instructions": "1. Identify gaps between described capabilities and those required for project execution\n2. Explain how the project intends to bridge these gaps with grant assistance",
+      "answer_content_instructions": "- Be specific about existing capability limitations\n- Provide concrete strategies for addressing gaps\n- Demonstrate proactive problem-solving approach\n- Examples of bridging gaps may include: subcontractors, knowledge acquisition, partnerships, etc."
+    },
+    {
+      "identifier": "5.3",
+      "type": "boolean",
+      "category": "Project Team",
+      "title": "Institutional Affiliation",
+      "question": "Indicate whether among the applicants there is an employee of an academic/research/medical institution",
+      "answer_structure_instructions": "- Provide a clear yes/no response\n- If yes, provide details of the institutional affiliation",
+      "answer_content_instructions": "- Be precise and transparent\n- Disclose any potential conflicts of interest\n- Explain the nature of the institutional connection"
+    },
+    {
+      "identifier": "5.4",
+      "type": "text",
+      "category": "Project Support",
+      "title": "Investor and Incubator Support",
+      "question": "Indicate whether the project has raised or is in the process of raising investors, and if it is supported by a supportive framework",
+      "answer_structure_instructions": "- Specify if investors have been secured\n- Detail any supportive frameworks such as:\n  - Innovation center\n  - Accelerator\n  - Technological incubator",
+      "answer_content_instructions": "- Provide specific details about investor involvement\n- Describe the nature of support received\n- Highlight how these frameworks contribute to project development"
+    },
+    {
+      "identifier": "6.1",
+      "type": "text",
+      "category": "Intellectual Property Infringement",
+      "title": "Intellectual Property Rights Verification",
+      "question": "Describe in detail the following aspects of knowledge:\n[1] Has it been verified that the research, development, and its products do not infringe on intellectual property rights, including patents of others? How was this verified?\n[2] Address the intellectual property rights of the applicant in the preliminary knowledge required to carry out the project and specify how usage rights will be obtained if they are not owned by the applicant\n[3] Describe the use of third-party knowledge components, including patents, usage licenses",
+      "answer_structure_instructions": "- Provide a comprehensive assessment of intellectual property status\n- Address each point systematically\n- Include specific details about ownership and verification",
+      "answer_content_instructions": "- Use clear and precise language\n- Provide specific examples of IP research\n- Demonstrate thorough due diligence"
+    },
+    {
+      "identifier": "6.2",
+      "type": "table",
+      "category": "Patent Documentation",
+      "title": "Patent Registration Details",
+      "question": "If relevant, detail the patents that have been filed or are planned to be filed for registration within the project based on current knowledge at the time of application submission",
+      "answer_structure_instructions": "- Create a comprehensive table with columns:\n  1. Patent number\n  2. Patent relevance to the project\n  3. Registration date and status",
+      "answer_content_instructions": "- Include all known patent information\n- Be specific about registration status\n- Highlight strategic importance of each patent"
+    },
+    {
+      "identifier": "6.3",
+      "type": "text",
+      "category": "Ownership Rights",
+      "title": "Ownership of Project Products",
+      "question": "Describe in detail for each product:\n[1] Are all property rights, including intellectual property, in the project's technologies and products, exclusively owned by the applicant?\n[2] For applications with joint ownership of knowledge, address ownership details and agreements\n[3] Address intellectual property rights in R&D products of subcontractors",
+      "answer_structure_instructions": "- Address each point systematically\n- Include specific details about ownership arrangements\n- Detail agreements and rights distribution",
+      "answer_content_instructions": "- Use clear and precise language\n- Provide specific details about ownership arrangements\n- Demonstrate comprehensive IP management"
+    },
+    {
+      "identifier": "6.4",
+      "type": "text",
+      "category": "Open Source Components",
+      "title": "Open Source Code Development",
+      "question": "If relevant, detail the code components that will be developed and returned to the community as open-source code. If not relevant, specify \"Not relevant.\"",
+      "answer_structure_instructions": "- Clearly outline any open-source components\n- Provide details about planned open-source contributions",
+      "answer_content_instructions": "- Be specific about open-source plans\n- Explain the rationale for open-source development\n- Demonstrate community engagement strategy"
+    },
+    {
+      "identifier": "6.5",
+      "type": "text",
+      "category": "Project Development Status",
+      "title": "Current Development Status",
+      "question": "Describe in detail the development status and achievements with reference to the following:\n[1] Relevant technologies and products existing in the project\n[2] Objectives and goals achieved to date",
+      "answer_structure_instructions": "- Provide a comprehensive overview of current development\n- Highlight key achievements and milestones",
+      "answer_content_instructions": "- Use clear and precise language\n- Demonstrate progress and potential\n- Provide specific, measurable achievements"
+    },
+    {
+      "identifier": "7.1",
+      "type": "text",
+      "category": "Technological Assessment",
+      "title": "Technological Details",
+      "question": "Address the following aspects:\n[1] Detailed explanation of technologies to be developed within this application\n[2] Key performance specifications of the product\n[3] Assessment of feasibility and validation\n[4] Technological entry barriers",
+      "answer_structure_instructions": "- Provide a comprehensive technological overview\n- Include technical diagrams or illustrations\n- Demonstrate technical depth and innovation",
+      "answer_content_instructions": "- Use technical language precisely\n- Highlight unique technological aspects\n- Explain complex technical concepts clearly"
+    },
+    {
+      "identifier": "7.2",
+      "type": "text",
+      "category": "Innovation Assessment",
+      "title": "Technological and Functional Uniqueness",
+      "question": "Describe in detail the following aspects:\n[1] The technological uniqueness and innovation at the basis of the project\n[2] The functional (usability) uniqueness and innovation underlying the project",
+      "answer_structure_instructions": "- Compare proposed innovation with existing market solutions\n- Highlight distinctive technological and functional features",
+      "answer_content_instructions": "- Use clear, comparative language\n- Emphasize competitive advantages\n- Demonstrate understanding of market landscape"
+    },
+    {
+      "identifier": "7.3",
+      "type": "text",
+      "category": "Project Challenges",
+      "title": "Development Challenges and Mitigation",
+      "question": "Describe in detail the following aspects:\n[1] What are the central challenges in the development process expected during the overall path and specifically within the Tnufa program, and how will these be addressed?",
+      "answer_structure_instructions": "- Provide a comprehensive analysis of potential challenges\n- Outline specific mitigation strategies\n- Demonstrate proactive problem-solving approach",
+      "answer_content_instructions": "- Be specific about potential obstacles\n- Provide clear, actionable solutions\n- Show strategic thinking"
+    },
+    {
+      "identifier": "7.4",
+      "type": "table",
+      "category": "Product Capability Progression",
+      "title": "Product Capability Development Tracking",
+      "question": "Provide a detailed table tracking the development of product capabilities",
+      "answer_structure_instructions": "- Create a table with columns:\n  1. Capability description\n  2. Current status\n  3. Status at project completion",
+      "answer_content_instructions": "- Be precise about capability progression\n- Demonstrate clear development pathway\n- Highlight key capability milestones"
+    },
+    {
+      "identifier": "8.1",
+      "type": "table",
+      "category": "Research and Development Tasks",
+      "title": "Project Development Tasks",
+      "question": "Detailed breakdown of R&D tasks",
+      "answer_structure_instructions": "- Create a comprehensive table with columns:\n  1. Task number\n  2. Task name\n  3. Detailed task description\n  4. Start date (mm/yy)\n  5. End date (mm/yy)",
+      "answer_content_instructions": "- Be specific and precise about each development task\n- Provide clear, actionable task descriptions\n- Ensure logical progression of tasks\n- Include specific milestones and deliverables"
+    },
+    {
+      "identifier": "8.2",
+      "type": "table",
+      "category": "Supplementary Project Activities",
+      "title": "Non-R&D Project Activities",
+      "question": "Detailed breakdown of activities that are not R&D",
+      "answer_structure_instructions": "- Create a comprehensive table with columns:\n  1. Activity number\n  2. Activity name\n  3. Detailed activity description\n  4. Start date (mm/yy)\n  5. End date (mm/yy)",
+      "answer_content_instructions": "- Include supporting activities such as business plan preparation, patent registration\n- Provide clear rationale for each activity\n- Demonstrate strategic approach to project support activities"
+    },
+    {
+      "identifier": "9.1",
+      "type": "text",
+      "category": "Market Analysis",
+      "title": "Market Segment Detailed Analysis",
+      "question": "Describe in detail the following aspects (specify sources):\n[1] Relevant market segment targeted by the product\n[2] Global annual market size and growth rate\n[3] Market trends and developments\n[4] Projected market share",
+      "answer_structure_instructions": "- Provide comprehensive market analysis\n- Include quantitative market data\n- Demonstrate deep market understanding",
+      "answer_content_instructions": "- Use credible, verifiable market sources\n- Provide specific numerical insights\n- Highlight market potential and dynamics"
+    },
+    {
+      "identifier": "9.2",
+      "type": "text",
+      "category": "Customer Segmentation",
+      "title": "Customer and User Characterization",
+      "question": "Describe in detail the following aspects:\n[1] Characterization of users and/or customers to whom the product is intended\n[2] Characterization of users and/or customers who will be expected to pay for the product",
+      "answer_structure_instructions": "- Provide detailed customer persona analysis\n- Distinguish between direct and end customers\n- Demonstrate deep understanding of customer segments",
+      "answer_content_instructions": "- Use precise customer segmentation\n- Provide demographic and behavioral insights\n- Highlight customer value proposition"
+    },
+    {
+      "identifier": "9.3",
+      "type": "text",
+      "category": "Market Validation",
+      "title": "Customer Interaction and Market Verification",
+      "question": "If contact with potential users or customers has been established, describe in detail:\n[1] Meetings conducted with customers to validate need and solution\n[2] Feedback received from customers\n[3] Degree of customer readiness\n[4] Existing or emerging collaborations",
+      "answer_structure_instructions": "- Provide comprehensive market validation evidence\n- Include specific customer interactions\n- Demonstrate market traction",
+      "answer_content_instructions": "- Use specific, verifiable customer interaction details\n- Highlight strategic partnerships\n- Provide clear evidence of market potential"
+    },
+    {
+      "identifier": "9.4",
+      "type": "text",
+      "category": "Revenue Strategy",
+      "title": "Business Model and Revenue Streams",
+      "question": "Describe in detail:\n[1] Future revenue model for the product\n[2] Planned marketing channels, partnerships",
+      "answer_structure_instructions": "- Provide comprehensive revenue strategy\n- Outline marketing and distribution approach",
+      "answer_content_instructions": "- Be specific about revenue streams\n- Demonstrate clear monetization strategy\n- Highlight unique business model aspects"
+    },
+    {
+      "identifier": "9.5.1",
+      "type": "text",
+      "category": "Competitive Landscape",
+      "title": "Competitive Positioning Analysis",
+      "question": "Describe the following aspects:\n[1] Product category classification\n[2] Existing approaches to addressing the need\n[3] Competitive advantages",
+      "answer_structure_instructions": "- Provide comprehensive competitive analysis\n- Compare product to market alternatives\n- Demonstrate unique value proposition",
+      "answer_content_instructions": "- Use clear, objective competitive comparison\n- Highlight distinctive product features\n- Provide credible market positioning"
+    },
+    {
+      "identifier": "9.5.2",
+      "type": "text",
+      "category": "Competitive Intelligence",
+      "title": "Detailed Competitor Analysis",
+      "question": "Describe in detail:\n[1] Competing products/solutions\n[2] Competitive advantages\n[3] Differentiation strategy",
+      "answer_structure_instructions": "- Create a comprehensive competitor table\n- Provide detailed competitive analysis\n- Demonstrate deep market understanding",
+      "answer_content_instructions": "- Use specific competitor details\n- Highlight unique competitive advantages\n- Provide clear differentiation strategy"
+    },
+    {
+      "identifier": "9.6",
+      "type": "text",
+      "category": "Market Challenges",
+      "title": "Market Entry Barriers and Mitigation",
+      "question": "Describe in detail:\n[1] Market entry barriers for project products\n[2] How the project intends to address the identified barriers",
+      "answer_structure_instructions": "- Provide comprehensive barrier analysis\n- Outline specific mitigation strategies",
+      "answer_content_instructions": "- Be specific about potential market challenges\n- Demonstrate proactive approach to barriers\n- Highlight strategic entry planning"
+    },
+    {
+      "identifier": "10",
+      "type": "text",
+      "category": "Grant Impact Assessment",
+      "title": "Grant Contribution and Funding Strategy",
+      "question": "Explain how receiving the Tnufa grant will enable the project to reach a significant milestone and detail the financing recruitment strategy",
+      "answer_structure_instructions": "- Clearly articulate the grant's strategic importance\n- Provide a comprehensive funding roadmap",
+      "answer_content_instructions": "- Be specific about milestone achievements\n- Demonstrate clear financial planning\n- Highlight how the grant accelerates project development"
+    },
+    {
+      "identifier": "11",
+      "type": "table",
+      "category": "Future Revenue Projection",
+      "title": "Royalty-Generating Technologies and Products",
+      "question": "If relevant, describe in detail the technologies and products to be developed that will generate future revenues",
+      "answer_structure_instructions": "- Create a comprehensive table of potential royalty-generating products\n- Provide clear revenue projection",
+      "answer_content_instructions": "- Be specific about potential revenue streams\n- Demonstrate potential for future financial returns"
+    },
+    {
+      "identifier": "12.1",
+      "type": "table",
+      "category": "Manufacturing Localization",
+      "title": "Manufacturing Location and Value-Added Declaration",
+      "question": "Declare the manufacturing location and value-added percentage for each project product",
+      "answer_structure_instructions": "- Create a detailed manufacturing location and value-added table\n- Address manufacturing for each product",
+      "answer_content_instructions": "- Provide precise manufacturing details\n- Demonstrate strategic manufacturing approach\n- Highlight local value creation"
+    },
+    {
+      "identifier": "12.1.1",
+      "type": "table",
+      "category": "Detailed Manufacturing Breakdown",
+      "title": "Detailed Manufacturing Location and Value-Added Percentage",
+      "question": "Create a comprehensive breakdown of manufacturing details",
+      "answer_structure_instructions": "- Create a detailed table with columns for:\n  1. Country of manufacture\n  2. Product name\n  3. Manufacturing essence\n  4. Percentage scope\n  5. Total manufacturing scope across all products",
+      "answer_content_instructions": "- Be precise in manufacturing component descriptions\n- Provide accurate percentage calculations\n- Demonstrate comprehensive manufacturing strategy"
+    },
+    {
+      "identifier": "12.2",
+      "type": "text",
+      "category": "Manufacturing Strategy",
+      "title": "Manufacturing Location Rationale",
+      "question": "If relevant, describe in detail manufacturing arrangements and reasons for location choices",
+      "answer_structure_instructions": "- Provide comprehensive manufacturing strategy explanation\n- Address both local and international manufacturing considerations",
+      "answer_content_instructions": "- Be transparent about manufacturing decisions\n- Demonstrate strategic thinking\n- Highlight economic considerations"
+    },
+    {
+      "identifier": "13",
+      "type": "text",
+      "category": "Economic Impact Assessment",
+      "title": "Project Contribution to Israeli Economy",
+      "question": "Describe in detail the project's direct and indirect contribution to the Israeli economy",
+      "answer_structure_instructions": "- Provide comprehensive economic impact analysis\n- Highlight broader societal contributions",
+      "answer_content_instructions": "- Be specific about economic and social impact\n- Demonstrate project's broader value\n- Highlight innovative potential"
+    },
+    {
+      "identifier": "14",
+      "type": "text",
+      "category": "Supporting Documentation",
+      "title": "Project Supporting Documents",
+      "question": "Provide relevant supplementary documents to support the application",
+      "answer_structure_instructions": "- Organize and include all relevant supporting documentation\n- Ensure comprehensive and clear supplementary materials",
+      "answer_content_instructions": "- Include all necessary supporting evidence\n- Demonstrate thorough and professional documentation\n- Provide clear, relevant supplementary information"
+    }
+  ]
+}

@@ -12,7 +12,7 @@ class GrantQuestion(BaseModel):
     question: str = Field(..., description="The text of the question")
     answer_structure_instructions: str = Field(..., description="The instructions for the structure of the answer")
     answer_content_instructions: str = Field(..., description="The instructions for the content of the answer and its formatting and sentiment")
-    
+
 class GrantAnswer(BaseModel):
     identifier: str = Field(..., description="The identifier of the question")
     category: str = Field(..., description="The category of the question")
