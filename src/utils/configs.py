@@ -1,7 +1,10 @@
+from functools import cached_property
 from typing import Optional
 from pathlib import Path
 from pydantic import BaseModel, Field
 from qdrant_client.http import models as qdrant_models
+
+from src.utils.models import Grant
 
 
 class QdrantCollectionConfig(BaseModel):
@@ -29,6 +32,7 @@ class FirebaseConfig(BaseModel):
 
 class SearchConfig(BaseModel):
     """Configuration for search parameters"""
+    embedding_config: 'EmbeddingConfig'
     min_relevance_score: float = Field(default=0.6, description="Minimum relevance score for sections")
     max_sections: int = Field(default=3, description="Maximum number of sections to return")
     include_taxonomy_terms: bool = Field(default=True, description="Whether to include taxonomy terms in search")
@@ -46,6 +50,10 @@ class LLMConfig(BaseModel):
     temperature: float = 0.7
     max_tokens: Optional[int] = None
 
+
+class GrantConfig(BaseModel):
+    grant_path: Path
+
 class AppConfig(BaseModel):
     """Root configuration containing all sub-configurations"""
     firebase: FirebaseConfig
@@ -53,6 +61,7 @@ class AppConfig(BaseModel):
     llm: LLMConfig
     embedding: EmbeddingConfig
     search: SearchConfig
+    grant: Optional[GrantConfig] = None
 
     @classmethod
     def from_env(cls) -> 'AppConfig':
@@ -81,7 +90,10 @@ class AppConfig(BaseModel):
             embedding=EmbeddingConfig(
                 model_name=os.getenv('EMBEDDING_MODEL', 'sentence-transformers/all-MiniLM-L6-v2')
             ),
-            search=SearchConfig()
+            search=SearchConfig(),
+            grant=GrantConfig(
+                grant_path=Path(os.getenv('GRANT_PATH', '')) if os.getenv('GRANT_PATH') else None
+            )
         )
 
     @classmethod
@@ -92,3 +104,10 @@ class AppConfig(BaseModel):
         with open(path) as f:
             config_dict = json.load(f)
             return cls(**config_dict)
+    
+    @cached_property
+    def grant_value(self) -> Grant:
+        """Load grant from JSON file"""
+        from src.utils.models import Grant
+        with open(self.grant_path) as f:
+            return Grant.model_validate_json(f.read())

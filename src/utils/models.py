@@ -99,8 +99,29 @@ class EnhancedContentSection(BaseModel):
     notes: str
     analysis: str
     actionable_gap_analysis: str
+    
+    def to_string(self) -> str:
+        return f"### {self.title}\n**Summary:**\n{self.summary}\n**Notes:**\n{self.notes}\n**Analysis:**\n{self.analysis}\n"
 
 
 class EnhancedContent(BaseModel):
     basic_info: dict[str, Any]
     sections: list[EnhancedContentSection]
+
+class QdrantPoint(BaseModel):
+    """Represents a point in Qdrant with its payload and vector"""
+    payload: dict[str, Any]
+    vector: list[float]
+    score: Optional[float] = None
+
+class ProfileSection(EnhancedContentSection):
+    """Represents a section of an innovator's profile"""
+    vector: list[float]
+    score: Optional[float] = None
+
+class SearchResult(BaseModel):
+    """Represents search results for profile sections"""
+    sections: list[ProfileSection]
+    
+    def to_string(self) -> str:
+        return "\n".join([section.to_string() for section in self.sections])

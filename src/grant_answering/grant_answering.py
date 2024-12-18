@@ -7,8 +7,8 @@ from src.utils.models import (
     GrantResponse, 
     GrantInformation
 )
-from src.grant_answering.prompts import PromptBuilder
 from src.utils.llm_client import LLMClient
+from src.grant_answering.prompts import PromptBuilder
 from src.grant_answering.innovator_profile_provider import InnovatorProfileProvider
 
 class GrantAnswering:
@@ -30,7 +30,12 @@ class GrantAnswering:
         "document",
     }
     
-    def __init__(self, llm_client: LLMClient, profile_provider: InnovatorProfileProvider):
+    def __init__(
+        self, 
+        llm_client: LLMClient,
+        prompt_builder: PromptBuilder,
+        profile_provider: InnovatorProfileProvider
+    ):
         """
         Initialize workflow with LLM client and profile provider
         
@@ -38,7 +43,7 @@ class GrantAnswering:
             llm_client: Configured LLM client for generating responses
             profile_provider: Provider for innovator profile information
         """
-        self._prompt_builder = PromptBuilder()
+        self._prompt_builder = prompt_builder
         self._llm_client = llm_client
         self._profile_provider = profile_provider
     
@@ -71,6 +76,7 @@ class GrantAnswering:
 
     def _generate_answer(
         self, 
+        entity_id: str,
         grant_information: GrantInformation, 
         question: GrantQuestion, 
         relevant_fields: Dict[str, str]
@@ -80,13 +86,12 @@ class GrantAnswering:
             return None
         
         # Get innovator profile information
-        innovator_profile = self._profile_provider.get_profile_info(question)
-            
+        innovator_profile = self._profile_provider.get_relevant_context(entity_id, question)
         answer_prompt = self._prompt_builder.build_answer_prompt(
             grant_information,
             question,
             relevant_fields,
-            innovator_profile
+            innovator_profile.to_string()
         )
         
         try:
@@ -106,6 +111,7 @@ class GrantAnswering:
 
     def process_grant_application(
         self,
+        entity_id: str,
         grant: Grant
     ) -> GrantResponse:
         """
@@ -126,6 +132,7 @@ class GrantAnswering:
                 
                 # Generate answer
                 answer_text = self._generate_answer(
+                    entity_id,
                     grant.information,
                     question,
                     relevant_fields
