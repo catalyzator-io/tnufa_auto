@@ -1,4 +1,4 @@
-from typing import Literal, Optional
+from typing import Any, Literal, Optional
 from pydantic import BaseModel, Field
 
 
@@ -84,7 +84,7 @@ SectionTitle = Literal[
     "Traction and Validation",
     "Team and Leadership",
     "Financial Information",
-    "Development and Executor",
+    "Development and Execution",
     "Legal and Compliance",
     "Impact and Innovation",
     "Additional Supporting Information",
@@ -102,5 +102,5 @@ class EnhancedContentSection(BaseModel):
 
 
 class EnhancedContent(BaseModel):
-    basic_info: dict[str, str]
+    basic_info: dict[str, Any]
     sections: list[EnhancedContentSection]

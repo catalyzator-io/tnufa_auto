@@ -1,142 +1,86 @@
-from typing import Any, Optional, Iterator
+from typing import Any, Optional
 from pathlib import Path
-import firebase_admin
-from firebase_admin import credentials, firestore, storage
-import requests
 
 from src.ingestion.extract import ContentExtractorProtocol
+from src.utils.data_structure_utils import find_file_data
+from src.utils.form_access import FormStorageProvider, FormDatabaseProvider
 
 class FormCollector:
-    """Collects and processes form submissions and related files from Firebase"""
+    """Collects and processes form submissions and related files"""
     
     def __init__(
         self, 
-        firebase_config_path: Path, 
+        storage_provider: FormStorageProvider,
+        database_provider: FormDatabaseProvider,
         content_extractor: ContentExtractorProtocol,
         form_id: str = 'innovator_introduction'
     ):
-        """Initialize Firebase connection and set form type
+        """Initialize form collector with providers
         
         Args:
-            firebase_config_path: Path to Firebase credentials file
+            storage_provider: Provider for file storage access
+            database_provider: Provider for database access
             content_extractor: Configured ContentExtractor instance
-            form_id: Form identifier to collect (defaults to innovator_introduction)
+            config: Firebase configuration
         """
-        cred = credentials.Certificate(firebase_config_path.as_posix())
-        firebase_admin.initialize_app(cred, {
-            'storageBucket': 'catalyzator.appspot.com'
-        })
-        self.db = firestore.client()
-        self.bucket = storage.bucket()
-        self.form_id = form_id
+        self.storage = storage_provider
+        self.database = database_provider
         self.content_extractor = content_extractor
-
-    def _find_file_data(self, data: Any) -> Iterator[dict[str, Any]]:
-        """Recursively find all file data in a nested structure
-        
-        Args:
-            data: Any data structure that might contain file information
-            
-        Yields:
-            dictionaries containing file information
-        """
-        if isinstance(data, dict):
-            if any(key in data for key in ['url', 'filename', 'path', 'relativePath']):
-                yield data
-            else:
-                for value in data.values():
-                    yield from self._find_file_data(value)
-        elif isinstance(data, list):
-            for item in data:
-                yield from self._find_file_data(item)
+        self.form_id = form_id
 
     def _get_entity_info(self, entity_id: str) -> dict[str, Any]:
         """Get entity information including member details"""
-        entity_doc = self.db.collection('entities').document(entity_id).get()
-        if not entity_doc.exists:
-            raise ValueError(f"Entity {entity_id} not found")
-        
-        entity_data = entity_doc.to_dict()
+        entity_data = self.database.get_entity(entity_id)
         
         # Get detailed member information
         members_data = []
         for member_id in entity_data.get('members', []):
-            member_doc = self.db.collection('users').document(member_id).get()
-            if member_doc.exists:
-                members_data.append(member_doc.to_dict())
+            if member_data := self.database.get_user(member_id):
+                members_data.append(member_data)
         
         entity_data['members'] = members_data
         return entity_data
 
     def _download_and_process_file(self, file_data: dict[str, Any]) -> Optional[str]:
-        """Download and extract text from a file using either URL or Firebase Storage path
+        """Download and extract text from a file
         
         Args:
-            file_data: Dictionary containing file information (url, path, relativePath, filename)
+            file_data: Dictionary containing file information
             
         Returns:
             Extracted text content from the file, or None if processing fails
         """
         try:
-            # Case 1: Direct URL available
-            if file_data.get('url'):
-                response = requests.get(file_data['url'])
-                response.raise_for_status()
-                return self.content_extractor.extract_text(response.content, file_data['filename'])
+            filename = file_data.get('filename', '')
             
-            # Case 2: Firebase Storage path available
-            storage_path = file_data.get('path') or file_data.get('relativePath')
-            if storage_path:
-                # Get a reference to the file in Firebase Storage
-                blob = self.bucket.blob(storage_path)
+            if url := file_data.get('url'):
+                file_contents = self.storage.get_file_from_url(url)
+            elif storage_path := (file_data.get('path') or file_data.get('relativePath')):
+                file_contents = self.storage.download_file(storage_path)
+                filename = filename or Path(storage_path).name
+            else:
+                return None
                 
-                # Download the file contents to memory
-                file_contents = blob.download_as_bytes()
-                
-                return self.content_extractor.extract_text(file_contents, file_data.get('filename', Path(storage_path).name))
-            
-            return None
+            return self.content_extractor.extract_text(file_contents, filename)
             
         except Exception as e:
             print(f"Error processing file {file_data.get('filename')}: {e}")
             return None
 
     def collect_form_data(self, entity_id: str) -> dict[str, Any]:
-        """Collect form data, entity information, and file contents for an entity
-        
-        Args:
-            entity_id: Entity identifier to collect data for
-            
-        Returns:
-            dictionary containing entity info, form data, and file contents
-        """
+        """Collect form data, entity information, and file contents for an entity"""
         # Get entity information
         entity_info = self._get_entity_info(entity_id)
         
         # Get form submissions
-        submissions_ref = (self.db
-            .collection('entities')
-            .document(entity_id)
-            .collection('forms')
-            .document(self.form_id)
-            .collection('submissions')
-        )
-        
-        form_data = []
+        form_data = self.database.get_form_submissions(entity_id, self.form_id)
         file_contents = {}
         
-        for submission in submissions_ref.stream():
-            submission_data = submission.to_dict()
-            submission_data['id'] = submission.id
-            
-            # Find and process all files in the submission data
-            for file_data in self._find_file_data(submission_data):
-                content = self._download_and_process_file(file_data)
-                if content:
+        # Process files in submissions
+        for submission in form_data:
+            for file_data in find_file_data(submission):
+                if content := self._download_and_process_file(file_data):
                     file_contents[file_data['filename']] = content
-                    file_data['content_ref'] = file_data['filename']
-            
-            form_data.append(submission_data)
         
         return {
             'entity': entity_info,

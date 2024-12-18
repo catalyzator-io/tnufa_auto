@@ -34,7 +34,7 @@ For every missing or incomplete section, explicitly note the gap and suggest det
 - have a 3 paragraph detailed analysis of the section.
 - Clearly separate actionable suggestions or notes for missing details.
 - Use `h2` markdown headers for section titles.
-- Use the exact titles "Summary", "Notes", "Detailed Analysis", "Actionable Gap Analysis" in this exact order for the parts of each section.
+- Use the exact titles "Summary", "Notes", "Analysis", "Actionable Gap Analysis" in this exact order for the parts of each section.
 - Each part's title should be in an `h3` markdown header.
 
 Deliver a polished, investor-ready report that captures all essential dimensions of due diligence.
@@ -59,7 +59,9 @@ def get_prompt(files_content: str) -> str:
 def extract_sections(content: str) -> list[EnhancedContentSection]:
     """Extract the sections from the content"""
     # Split content into sections based on h2 headers
-    sections = [s.strip() for s in content.split('## ') if s.strip()]
+    if not content.startswith('\n'):
+        content = '\n' + content
+    sections = [s.strip() for s in content.split('\n## ') if s.strip()]
     
     def _parse_section_title(section: str) -> str:
         return section.split('\n', maxsplit=1)[0].strip()
@@ -74,9 +76,9 @@ def extract_sections(content: str) -> list[EnhancedContentSection]:
             # Part title is second line
             _parse_part_title(part): part.split('\n', maxsplit=1)[1].strip()
             # Split by h3 headers and skip first empty element
-            for part in section.split('### ')[1:]
+            for part in section.split('\n### ')[1:]
         }
         for section in sections
     }
     
-    return [EnhancedContentSection(title=title, **section) for title, section in parsed_sections.values()]
+    return [EnhancedContentSection(title=title, **section) for title, section in parsed_sections.items()]

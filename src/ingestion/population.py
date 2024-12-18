@@ -1,43 +1,33 @@
-from typing import Protocol, Optional
-from pydantic import BaseModel
+import json, uuid
+from typing import Protocol
 from qdrant_client import QdrantClient
 from qdrant_client.http import models as qdrant_models
 from fastembed import TextEmbedding
+from src.utils.configs import QdrantConfig, EmbeddingConfig
 from src.utils.models import EnhancedContent, EnhancedContentSection
 
-class EmbeddingConfig(BaseModel):
-    """Configuration for embedding settings"""
-    model_name: str = 'sentence-transformers/all-MiniLM-L6-v2'
-    vector_size: int = 384
-    distance_metric: qdrant_models.Distance = qdrant_models.Distance.COSINE
-
-class QdrantConfig(BaseModel):
-    """Configuration for Qdrant connection settings"""
-    url: str = "http://localhost:6333"
-    api_key: Optional[str] = None
-    timeout: float = 10.0
-    prefer_grpc: bool = False
 
 class DatabasePopulatorProtocol(Protocol):
-    def populate(self, entity_id: str, data: EnhancedContent):
+    def populate(self, entity_id: str, content: EnhancedContent):
         ...
 
 class DatabasePopulator(DatabasePopulatorProtocol):
-    """Populates Qdrant vector database with enhanced content sections"""
+    """Populates vector database with enhanced content"""
     
     def __init__(
-        self, 
-        collection_name: str = "catalyzator",
-        qdrant_config: QdrantConfig = None,
-        embedding_config: EmbeddingConfig = None
+        self,
+        qdrant_config: QdrantConfig,
+        embedding_config: EmbeddingConfig
     ):
-        # Initialize configs with defaults if not provided
-        self.collection_name = collection_name
-        self.qdrant_config = qdrant_config or QdrantConfig()
-        self.embedding_config = embedding_config or EmbeddingConfig()
+        """Initialize database populator with configurations
         
-        # Initialize Qdrant client with config
-        self.client = QdrantClient(**self.qdrant_config.model_dump())
+        Args:
+            qdrant_config: Configuration for Qdrant connection and collection
+            embedding_config: Configuration for embedding model
+        """
+        self.client = QdrantClient(**qdrant_config.model_dump(exclude={'collection'}))
+        self.collection_name = qdrant_config.collection.name
+        self.embedding_config = embedding_config
         self.embedder = TextEmbedding(self.embedding_config.model_name)
         
         self._init_collection()
@@ -76,7 +66,7 @@ class DatabasePopulator(DatabasePopulatorProtocol):
         
         return [
             qdrant_models.PointStruct(
-                id=f"{entity_id}_{idx}",
+                id=str(uuid.uuid4()),
                 vector=embedding.tolist(),
                 payload={
                     "entity_id": entity_id,
@@ -87,7 +77,7 @@ class DatabasePopulator(DatabasePopulatorProtocol):
                     "actionable_gap_analysis": section.actionable_gap_analysis
                 }
             )
-            for idx, (section, embedding) in enumerate(zip(sections, embeddings))
+            for section, embedding in zip(sections, embeddings)
         ]
 
     def _create_basic_info_section(self, basic_info: dict[str, str]) -> EnhancedContentSection:
@@ -100,25 +90,20 @@ class DatabasePopulator(DatabasePopulatorProtocol):
             EnhancedContentSection: Section containing formatted basic info
         """
         return EnhancedContentSection(
-            title="others",
-            summary="\n".join(f"{k}: {v}" for k, v in basic_info.items()),
+            title="Others",
+            summary=json.dumps(basic_info, indent=4),
             notes="Basic information about the entity",
             analysis="Collection of fundamental entity details",
             actionable_gap_analysis="Review and verify basic information completeness"
         )
 
-    def populate(self, entity_id: str, data: EnhancedContent):
-        """Populate Qdrant with enhanced content sections
-        
-        Args:
-            entity_id: Unique identifier for the entity
-            data: Enhanced content data containing sections
-        """
+    def populate(self, entity_id: str, content: EnhancedContent):
+        """Populate database with enhanced content"""
         # Create basic info section
-        basic_info_section = self._create_basic_info_section(data.basic_info)
+        basic_info_section = self._create_basic_info_section(content.basic_info)
         
         # Combine with other sections
-        all_sections = [basic_info_section] + data.sections
+        all_sections = [basic_info_section] + content.sections
         
         # Create points from all sections
         points = self._create_points(entity_id, all_sections)
