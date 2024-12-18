@@ -37,3 +37,9 @@ Some important insights of the semi-manual process to know when implementing the
 - Allow multiple iterations as the response is very long
 
 The meaning of those insights is the need to implement a markdown <-> JSON converter.
+
+---
+
+curl \
+    -X GET 'https://b1c9fbf9-cdf2-4fd5-8786-fba46c588ba2.us-east4-0.gcp.cloud.qdrant.io:6333' \
+    --header 'api-key: 9eZooOYjR5iBNIa7EJVVWbvfSvm0zHZyAf_rRPhortjpXAAGQnk7NA'

@@ -7,6 +7,7 @@ ffmpeg-python
 # Document processing
 docling
 fastembed
+qdrant-client
 
 # Add Whisper dependencies
 transformers

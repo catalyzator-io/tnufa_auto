@@ -28,4 +28,4 @@ class IngestionPipeline:
         # 2. Enhance content
         enhanced_data = self.content_enhancer.process_content(raw_data)
         # 3. Populate database
-        self.db_populator.populate(enhanced_data)
+        self.db_populator.populate(entity_id, enhanced_data)

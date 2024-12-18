@@ -71,8 +71,30 @@ TaxonomyCategory = Literal[
 
 Taxonomy = dict[TaxonomyCategory, list[str]]
 
+SectionTitle = Literal[
+    "Introduction",
+    "The Problem",
+    "The Need",
+    "The Solution",
+    "The Business Model",
+    "Go-to-Market Strategy",
+    "Market Opportunity",
+    "Technology/Innovation",
+    "Competitive Analysis",
+    "Traction and Validation",
+    "Team and Leadership",
+    "Financial Information",
+    "Development and Executor",
+    "Legal and Compliance",
+    "Impact and Innovation",
+    "Additional Supporting Information",
+    "Others"
+]
+
+SectionInfo = dict[SectionTitle, str]
+
 class EnhancedContentSection(BaseModel):
-    title: str
+    title: SectionTitle
     summary: str
     notes: str
     analysis: str

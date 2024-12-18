@@ -24,3 +24,4 @@ def ingest(config_path: Path, entity_id: str, llm_client: LLMClient, form_id: st
     pipeline.process_entity(entity_id)
 
 __all__ = ["ingest", "IngestionPipeline"]
+

@@ -1,6 +1,12 @@
 from typing import Dict, Optional
 import json
-from src.utils.models import Grant, GrantQuestion, GrantAnswer, GrantResponse, GrantInformation
+from src.utils.models import (
+    Grant, 
+    GrantQuestion, 
+    GrantAnswer, 
+    GrantResponse, 
+    GrantInformation
+)
 from src.grant_answering.prompts import PromptBuilder
 from src.utils.llm_client import LLMClient
 from src.grant_answering.innovator_profile_provider import InnovatorProfileProvider
