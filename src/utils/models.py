@@ -54,3 +54,31 @@ class Grant(BaseModel):
 
 class GrantResponse(BaseModel):
     answers: list[GrantAnswer]
+
+
+TaxonomyCategory = Literal[
+    "TEAM_LEADERSHIP",
+    "COMPANY_FUNDAMENTALS",
+    "PRODUCT_TECHNOLOGY",
+    "MARKET_ANALYSIS",
+    "BUSINESS_MODEL",
+    "TRACTION_VALIDATION",
+    "FINANCIAL_INFORMATION",
+    "DEVELOPMENT_EXECUTION",
+    "LEGAL_COMPLIANCE",
+    "IMPACT_INNOVATION"
+]
+
+Taxonomy = dict[TaxonomyCategory, list[str]]
+
+class EnhancedContentSection(BaseModel):
+    title: str
+    summary: str
+    notes: str
+    analysis: str
+    actionable_gap_analysis: str
+
+
+class EnhancedContent(BaseModel):
+    basic_info: dict[str, str]
+    sections: list[EnhancedContentSection]

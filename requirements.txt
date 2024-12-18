@@ -1,2 +1,17 @@
 pydantic
 openai
+torch
+firebase-admin
+requests
+ffmpeg-python
+# Document processing
+docling
+fastembed
+
+# Add Whisper dependencies
+transformers
+torchaudio
+accelerate
+
+# Spacy
+spacy

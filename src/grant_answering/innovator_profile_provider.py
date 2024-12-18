@@ -1,5 +1,5 @@
 from typing import Dict
-from models import GrantQuestion
+from src.utils.models import GrantQuestion
 
 class InnovatorProfileProvider:
     """Provides relevant innovator profile information for a given question."""

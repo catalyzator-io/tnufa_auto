@@ -1,5 +1,5 @@
-from typing import Dict, Any
-from models import GrantInformation, GrantQuestion
+from typing import Dict
+from src.utils.models import GrantInformation, GrantQuestion
 
 class PromptBuilder:
     _system_context = """You are an expert grant consultant with years of experience in helping innovators secure funding. 

@@ -14,10 +14,13 @@ The prompt is composed of the grant information, the question and the extracted 
 
 ## Current state of the project
 
+- implement validity agent
 - The flow is implemented and the LLM client is working.
 - The innovator's profile database and the profile provider are not implemented yet.
 - The prompt building is there and will be improved if needed.
+    - more focus and guidance on technological innovation.
 - We need to implement the database population.
+- We need to implement the critique agent.
 - We need to implement an update flow for cases where
     - the innovator's profile is updated.
     - the grant is updated.

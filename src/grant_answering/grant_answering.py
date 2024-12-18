@@ -1,9 +1,9 @@
 from typing import Dict, Optional
 import json
-from models import Grant, GrantQuestion, GrantAnswer, GrantResponse, GrantInformation
-from prompts import PromptBuilder
-from llm_client import LLMClient
-from innovator_profile_provider import InnovatorProfileProvider
+from src.utils.models import Grant, GrantQuestion, GrantAnswer, GrantResponse, GrantInformation
+from src.grant_answering.prompts import PromptBuilder
+from src.utils.llm_client import LLMClient
+from src.grant_answering.innovator_profile_provider import InnovatorProfileProvider
 
 class GrantAnswering:
     """
